@@ -62,7 +62,7 @@ box-shadow: none;
 .btn {
   border: 2px solid transparent;
   background: #F5F5F5;
-  color: #ffffff;
+  color: #000000;
   font-size: 16px;
   line-height: 25px;
   padding: 10px 0;
@@ -171,23 +171,65 @@ box-shadow: none;
     <div class="login">
         <div class="login-screen">
             
-                <h1>Login</h1>
+                <h1>Create an Account</h1>
            
 
             <div class="login-form">
                 <div class="control-group">
-                <input type="text" class="login-field" value="" placeholder="username" id="login-name">
-                <label class="login-field-icon fui-user" for="login-name"></label>
+                <input type="text" class="login-field" value="" placeholder="first name" id="first_name">
+                <label class="login-field-icon fui-user" for="first_name"></label>
+                </div>
+                
+                <div class="control-group">
+                <input type="text" class="login-field" value="" placeholder="last name" id="last_name">
+                <label class="login-field-icon fui-user" for="last_name"></label>
                 </div>
 
                 <div class="control-group">
-                <input type="password" class="login-field" value="" placeholder="password" id="login-pass>
+                <input type="text" class="login-field" value="" placeholder="username" id="username">
+                <label class="login-field-icon fui-user" for="login_name"></label>
+                </div>
+
+                <div class="control-group">
+                <input type="text" class="login-field" value="" placeholder="email address" id="email">
+                <label class="login-field-icon fui-user" for="email"></label>
+                </div>
+
+                <div class="control-group">
+                <input type="password" class="login-field" value="" placeholder="password" id="login-pass">
                 <label class="login-field-icon fui-lock" for="login-pass"></label>
                 </div>
+
+                <div class="control-group">
+                <input type="password" class="login-field" value="" placeholder="confirm password" id="pass-confirm">
+                <label class="login-field-icon fui-lock" for="login-pass"></label>
+                </div>
+                <div class="control-group">
+                <input type="text" class="login-field" value="" placeholder="street address" id="street_address">
+                <label class="login-field-icon fui-user" for="street_address"></label>
+                </div>
                 
-                <a class="btn btn-primary  btn-block" style="float: left;" href="#">login</a>
-                <br><br> <br> <br>
-                <p>Don't have an account? <a href="signup.html">Sign up here!</a></p>
+                <div class="control-group">
+                <input type="text" class="login-field" value="" placeholder="city" id="city">
+                <label class="login-field-icon fui-user" for="city"></label>
+                </div>
+
+                <div class="control-group">
+                <input type="text" class="login-field" value="" placeholder="state" id="state">
+                <label class="login-field-icon fui-user" for="state"></label>
+                </div>
+
+                <div class="control-group">
+                <input type="text" class="login-field" value="" placeholder="zip code" id="zip_code">
+                <label class="login-field-icon fui-user" for="zip_code"></label>
+                </div>
+
+           
+                
+                <a class="btn btn-primary  btn-block" style="float: left;" href="#">sign up</a>
+
+                <br><br><br>
+             
             </div>
         </div>
     </div>
