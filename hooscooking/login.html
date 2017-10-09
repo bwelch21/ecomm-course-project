@@ -21,7 +21,7 @@ background-color: #3498DB;
 padding: 50px;
 }
 .login {
-margin: 20px auto;
+margin: 5px auto;
 width: 300px;
 }
 .login-screen {
@@ -61,19 +61,21 @@ box-shadow: none;
 
 .btn {
   border: 2px solid transparent;
-  background: #3498DB;
+  background: #F5F5F5;
   color: #ffffff;
   font-size: 16px;
   line-height: 25px;
   padding: 10px 0;
   text-decoration: none;
-  text-shadow: none;
+  text-shadow: none
   border-radius: 3px;
   box-shadow: none;
   transition: 0.25s;
   display: block;
-  width: 250px;
+  width: 200px;
   margin: 0 auto;
+
+
 }
 
 .btn:hover {
@@ -150,14 +152,14 @@ box-shadow: none;
     </hgroup>
     <nav id="main-nav" class="two thirds column omega">
     <ul id="main-nav-menu" class="nav-menu">
-    <li id="menu-item-1" class="current">
+    <li id="menu-item-1" >
     <a href="index.html">Home</a>
     </li>
     <li id="menu-item-2">
     <a href="about-us.html">About us</a>
     </li>
-    <li id="menu-item-3">
-    <a href="login.html">Sign Up/Login</a>
+    <li id="menu-item-3" class="current">
+    <a href="login.html">Login</a> / <a href="signup.html">Sign Up</a>
     </li>
     </ul>
     </nav>
@@ -165,11 +167,12 @@ box-shadow: none;
     </header>
 
   <body>
+
     <div class="login">
         <div class="login-screen">
-            <div class="app-title">
+            
                 <h1>Login</h1>
-            </div>
+           
 
             <div class="login-form">
                 <div class="control-group">
@@ -178,50 +181,46 @@ box-shadow: none;
                 </div>
 
                 <div class="control-group">
-                <input type="password" class="login-field" value="" placeholder="password" id="login-pass">
+                <input type="password" class="login-field" value="" placeholder="password" id="login-pass>
                 <label class="login-field-icon fui-lock" for="login-pass"></label>
                 </div>
-
-                <a class="btn btn-primary btn-large btn-block" href="#">login</a>
-                <a class="login-link" href="#">Lost your password?</a>
+                
+                <a class="btn btn-primary  btn-block" style="float: left;" href="#">login</a>
+                <br><br> <br> <br>
+                <p>Don't have an account? <a href="signup.html">Sign up here!</a></p>
             </div>
         </div>
     </div>
-</body>
-
-<body>
-    <div class="login">
-        <div class="login-screen">
-            <div class="app-title">
-                <h1>Sign Up</h1>
-            </div>
-
-            <div class="login-form">
-                <div class="control-group">
-                <input type="text" class="login-field" value="" placeholder="username" id="login-name">
-                <label class="login-field-icon fui-user" for="login-name"></label>
-                </div>
-
-                <div class="control-group">
-                <input type="text" class="login-field" value="" placeholder="email address" id="email">
-                <label class="login-field-icon fui-user" for="email"></label>
-                </div>
-
-                <div class="control-group">
-                <input type="password" class="login-field" value="" placeholder="password" id="login-pass">
-                <label class="login-field-icon fui-lock" for="login-pass"></label>
-                </div>
-
-                <div class="control-group">
-                <input type="password" class="login-field" value="" placeholder="confirm password" id="pass-confirm">
-                <label class="login-field-icon fui-lock" for="login-pass"></label>
-                </div>
 
 
-                <a class="btn btn-primary btn-large btn-block" href="#">Sign Up!</a>
-            </div>
-        </div>
-    </div>
+
+<footer>
+
+<div class="footer sixteen columns over">
+
+<div class="social footer-columns ">
+<h3 align="middle" > Hoos Cooking, a community marketplace for homecooked meals.</h3>
+
+
+
+</div>
+
+</div>
+
+<div id="footer-base">
+<div class="container">
+<div class="eight columns">
+<a href="http://www.opendesigns.org/design/icebrrrg/">Icebrrg Website Template</a> &copy; 2012
+</div>
+
+<div class="eight columns far-edge">
+Design by <a href="http://www.opendesigns.org">OD</a>
+</div>
+</div>
+</div>
+
+</footer>
+
 </body>
   
   
