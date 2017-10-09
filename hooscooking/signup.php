@@ -97,7 +97,7 @@ function clean_data ($data) {
   	if (empty($_POST["street_address"])) {
 	 	$streetErr = "Please enter a username";
 	 	$error = true;
-	} else if (!preg_match("[[:alnum:]](\s[[:alnum:]])*",$_POST["street_address"])) {
+	} else if (!preg_match("[[:alnum:]](\s[[:alnum:]]|\.)*",$_POST["street_address"])) {
 		$streetErr = "Username must contain only letters and numers.";
 		$error = true; 
 	} else {
