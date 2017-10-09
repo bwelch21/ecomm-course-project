@@ -63,7 +63,7 @@ function clean_data ($data) {
 	 	$usernameErr = "Please enter a username";
 	 	$error = true;
 	} else if (!preg_match("[[:alnum:]]",$_POST["username"])) {
-		$usernameErr = "Username must contain only letters and numers.";
+		$usernameErr = "Username must contain only letters and numbers.";
 		$error = true; 
 	} else {
 		$username = clean_data($_Post["username"]);
@@ -82,6 +82,7 @@ function clean_data ($data) {
 	}
 
 	//clean password -------------------------------------------------
+	$pass_confirm = clean_data($_Post['pass_confirm']);
 	 if (empty($_POST["pass"])) {
 	 	$passErr = "Please enter a password";
 	 	$error = true;
@@ -91,7 +92,8 @@ function clean_data ($data) {
 	} else {
 		$pass = clean_data($_Post["pass"]);
 	}
-
+ 
+	
 
 	//clean street address ----------------------------------------  
   	if (empty($_POST["street_address"])) {
@@ -132,7 +134,7 @@ function clean_data ($data) {
  	if (empty($_POST["zip"])) {
 	 	$zipErr = "Please enter a valid zip code";
 	 	$error = true;
-	} else if (!preg_match("^[0-9]{2}$]]",$_POST["state"])) {
+	} else if (!preg_match("^[0-9]{5}$]]",$_POST["state"])) {
 		$zipErr = "Zip code must be 5 digits long and only contain the characters 0-9";
 		$error = true; 
 	} else {
