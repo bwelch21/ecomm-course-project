@@ -22,11 +22,12 @@ if(!$conn) {
 }
 
 // Define variables
-$dish_name = $price = $product_description = "";
+$dish_name = $price = $product_description = $image = "";
+$target_dir = "uploads/";
 
 // Define error messages
 $error = False;
-$dish_name_error = $price_error = $product_description_error = $type_id_error = "";
+$dish_name_error = $price_error = $product_description_error = $type_id_error = $image_error = "";
 
 // Check if form was submitted
 if(isset($_POST["submit"])) {
@@ -55,8 +56,22 @@ if(isset($_POST["submit"])) {
 		$product_description = clean_data($_POST["product_description"]);
 	}
 
+	// Check if the file is an actual image and not a fake image
+	$target_file = $target_dir . basename($_FILES["image"]["name"]);
+	$uploadOk = 1;
+	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+	$check = getimagesize($_FILES["image"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+        $error = True;
+    }
+
 	if(!$error) {
-		$query = "INSERT INTO food_item(available,dish_name,price,product_description,seller_id,type_id) VALUES('1','$dish_name','$price','$product_description','1','1')";
+		$query = "INSERT INTO food_item(available,dish_name,price,product_description,seller_id,type_id,image) VALUES('1','$dish_name','$price','$product_description','1','1','$target_file')";
 		$res = mysqli_query($conn, $query);
 	}
 
@@ -113,7 +128,7 @@ if(isset($_POST["submit"])) {
 	<h1 style="text-align: center;">Make a listing!</h1><br>
 
 	<div class="listing-form">
-		<form method="post" action="create_item.php" id="listing-form" class="form-style-6">
+		<form method="post" action="create_item.php" id="listing-form" class="form-style-6" enctype="multipart/form-data">
 
 			<div class="control-group">
 				<span class="error">* <?php echo $dish_name_error; ?></span>
@@ -130,6 +145,11 @@ if(isset($_POST["submit"])) {
 				<span class="error">* <?php echo $price_error; ?>
 				</span>
 				<input type="number" min="0.01" max="10000.00" value="" step="0.01" placeholder="Product price" name="price">
+			</div>
+
+			<div class="control-group">
+				<span class"error">* <?php echo $image_error; ?></span>
+				<input type="file" name="image" value="">
 			</div><br>
 
 			<input id="button" type="submit" name="submit" value="Create listing">
