@@ -29,7 +29,7 @@ function clean_data ($data) {
 
  // setting the error codes to default values
  $error = false;
- $firstNameErr = $lastNameErr = $usernameErr = $emailErr = $passErr = "";
+ $firstNameErr = $lastNameErr = $emailErr = $passErr = "";
  $cityErr = $stateErr = $streetErr = $zipErr = "";
 
  if ( isset($_POST['submit']) ) {
@@ -38,83 +38,78 @@ function clean_data ($data) {
 	if (empty($_POST["first_name"])) {
 	 	$firstNameErr = "Please enter your first name";
 	 	$error = true;
-	} else if (!preg_match("[[:alpha:]]",$_POST["first_name"])) {
+	} else if (!preg_match("/(^[a-zA-Z]+$)/",$_POST["first_name"])) {
 		$firstNameErr = "First name must contain only letters.";
 		$error = true; 
 	} else {
-		$firstName = clean_data($_Post["first_name"]);
+		$first_name = clean_data($_POST["first_name"]);
+		
 	}
-
+	//$echo $first_name;
 	
 	//clean last name ---------------------------------------------------
 	if (empty($_POST["last_name"])) {
 	 	$lastNameErr = "Please enter your last name";
 	 	$error = true;
-	} else if (!preg_match("[[:alpha:]]",$_POST["last_name"])) {
+	} else if (!preg_match("/(^[a-zA-Z]+$)/",$_POST["last_name"])) {
 		$lastNameErr = "Last name must contain only letters.";
 		$error = true; 
 	} else {
-		$lastName = clean_data($_Post["last_name"]);
+		$last_name = clean_data($_POST["last_name"]);
 	}  
-
- 	
- 	//clean user name -------------------------------------------------
- 	if (empty($_POST["username"])) {
-	 	$usernameErr = "Please enter a username";
-	 	$error = true;
-	} else if (!preg_match("[[:alnum:]]",$_POST["username"])) {
-		$usernameErr = "Username must contain only letters and numbers.";
-		$error = true; 
-	} else {
-		$username = clean_data($_Post["username"]);
-	}
- 	
+	
 
  	//clean email -------------------------------------------------------
 	if (empty($_POST["email"])) {
 	       $emailErr = "Please enter an email address";
 	       $error = true;
-	} else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+	} else if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
 		$emailErr = "Invalid email format"; 
 		$error = true;
 	} else {
-		$email = clean_data($_Post["email"]);
+		$email = clean_data($_POST["email"]);
+			$my_sql_query = mysqli_query($conn,"SELECT email FROM user WHERE email='$email'");
+	if (mysqli_num_rows($my_sql_query)!=0){
+		$emailErr = "An account with this email address already exists, please login or enter a different email";
+		$error = true;
+	}
 	}
 
+
 	//clean password -------------------------------------------------
-	$pass_confirm = clean_data($_Post['pass_confirm']);
+	//$pass_confirm = clean_data($_Post['pass_confirm']);
 	 if (empty($_POST["pass"])) {
 	 	$passErr = "Please enter a password";
 	 	$error = true;
-	} else if ((strcmp($pass, $pass_confirm) !== 0)) {
+	} else if ((strcmp($_POST["pass"], $_POST["pass_confirm"]) !== 0)) {
 		$passErr = "The passwords you entered do not match";
 		$error = true; 
 	} else {
-		$pass = clean_data($_Post["pass"]);
+		$pass = clean_data($_POST["pass"]);
 	}
  
 	
 
 	//clean street address ----------------------------------------  
   	if (empty($_POST["street_address"])) {
-	 	$streetErr = "Please enter a username";
+	 	$streetErr = "Please enter your street address";
 	 	$error = true;
-	} else if (!preg_match("[[:alnum:]](\s[[:alnum:]]|\.)*",$_POST["street_address"])) {
-		$streetErr = "Username must contain only letters and numers.";
+	} else if (!preg_match_all("/^[A-Za-z0-9\s\-\.\,]+$/",$_POST["street_address"])) {
+		$streetErr = "Street address must contain only letters and numbers and a period";
 		$error = true; 
 	} else {
-		$street_address = clean_data($_Post["street_address"]);
+		$street_address = clean_data($_POST["street_address"]);
 	}
 	
 	//clean city --------------------------------------------------------------  
   	if (empty($_POST["city"])) {
 	 	$cityErr = "Please enter a city";
 	 	$error = true;
-	} else if (!preg_match("[[:alpha:]]",$_POST["city"])) {
+	} else if (!preg_match("/(^[a-zA-Z]+$)/",$_POST["city"])) {
 		$cityErr = "City name must contain only letters";
 		$error = true; 
 	} else {
-		$city = clean_data($_Post["city"]);
+		$city = clean_data($_POST["city"]);
 	}
 
 
@@ -122,27 +117,29 @@ function clean_data ($data) {
 	if (empty($_POST["state"])) {
 	 	$stateErr = "Please enter a state";
 	 	$error = true;
-	} else if (!preg_match("[[:alpha:]]",$_POST["state"])) {
+	} else if (!preg_match("/(^[a-zA-Z]+$)/",$_POST["state"])) {
 		$stateErr = "State name must contain only letters";
 		$error = true; 
 	} else {
-		$state = clean_data($_Post["state"]);
+		$state = clean_data($_POST["state"]);
 	}
 
   	
   	//clean zip -------------------------------------------------------------
- 	if (empty($_POST["zip"])) {
+ 	if (empty($_POST["zip_code"])) {
 	 	$zipErr = "Please enter a valid zip code";
 	 	$error = true;
-	} else if (!preg_match("^[0-9]{5}$]]",$_POST["state"])) {
+	} else if (!preg_match("/^[0-9]{5}$/",$_POST["zip_code"])) {
 		$zipErr = "Zip code must be 5 digits long and only contain the characters 0-9";
 		$error = true; 
 	} else {
-		$zip = clean_data($_Post["zip"]);
+		$zip_code = clean_data($_POST["zip_code"]);
 	}
   
   
-
+	//echo $zip_code;
+	//echo $state;
+	//echo $first_name;
    
   // if there's no error, continue to signup
   if( !$error ) {
@@ -158,7 +155,7 @@ function clean_data ($data) {
 	$errMSG = "Successfully registered, you may login now";
 	unset($first_name);
 	unset($last_name);
-	unset($username);
+	
 	unset($street_address);
 	unset($city);
 	unset($state);
@@ -172,10 +169,10 @@ function clean_data ($data) {
 	
   }
 
-  
+ 
   
  }
-	}
+	
 ?>
 <!DOCTYPE html>
 <html >
@@ -355,27 +352,25 @@ box-shadow: none;
 			<form method="post" action="signup.php" autocomplete="off">
 				 
 				<div class="control-group">
-				<span class = "error">* <?php echo $firstNameErr;?></span
+				<span class = "error"> <?php echo $firstNameErr;?></span>
 				<input type="text" class="login-field" value="" placeholder="first name" name="first_name" id="first_name">
 				</div>
 				
 				<div class="control-group">
-				<span class = "error">* <?php echo $lastNameErr;?></span
+				<span class = "error"> <?php echo $lastNameErr;?></span>
 				<input type="text" class="login-field" value="" placeholder="last name" name="last_name">
 				</div>
 
-				<div class="control-group">
-				<span class = "error">* <?php echo $usernameErr;?></span
-				<input type="text" class="login-field" value="" placeholder="username" name="username">
-				</div>
+		
+		
 
 				<div class="control-group">
-				<span class = "error">* <?php echo $emailErr;?></span
+				<span class = "error"> <?php echo $emailErr;?></span>
 				<input type="text" class="login-field" value="" placeholder="email address" name="email">
 				</div>
 
 				<div class="control-group">
-				<span class = "error">* <?php echo $passErr;?></span
+				<span class = "error"> <?php echo $passErr;?></span>
 				<input type="password" class="login-field" value="" placeholder="password" name="pass">
 				</div>
 
@@ -384,22 +379,22 @@ box-shadow: none;
 				</div>
 				
 				<div class="control-group">
-				<span class = "error">* <?php echo $streetErr;?></span
+				<span class = "error"> <?php echo $streetErr;?></span>
 				<input type="text" class="login-field" value="" placeholder="street address" name="street_address">
 				</div>
 				
 				<div class="control-group">
-				<span class = "error">* <?php echo $cityErr;?></span
+				<span class = "error"> <?php echo $cityErr;?></span>
 				<input type="text" class="login-field" value="" placeholder="city" name="city">
 				</div>
 
 				<div class="control-group">
-				<span class = "error">* <?php echo $stateErr;?></span
+				<span class = "error"> <?php echo $stateErr;?></span>
 				<input type="text" class="login-field" value="" placeholder="state" name="state">
 				</div>
 
 				<div class="control-group">
-				<span class = "error">* <?php echo $zipErr;?></span
+				<span class = "error"> <?php echo $zipErr;?></span>
 				<input type="text" class="login-field" value="" placeholder="zip code" name="zip_code">
 				</div>
 
