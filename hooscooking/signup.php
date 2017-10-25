@@ -145,8 +145,8 @@ function clean_data ($data) {
   if( !$error ) {
 
    // password encrypt using SHA256();
-   $password = hash('sha256', $pass);
-   
+  // $password = hash('sha256', $pass);
+   $password = $pass;
    $query = "INSERT INTO user(firstname,lastname,email,address,city,state,zipcode,password) VALUES('$first_name','$last_name','$email','$street_address','$city','$state', '$zip_code','$password')";
    $res = mysqli_query($conn,$query);
    
