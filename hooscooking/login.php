@@ -164,53 +164,80 @@ box-shadow: none;
     </header>
 
   <body>
+  
+  <?php
+  
+   // this will avoid mysql_connect() deprecation error.
+ error_reporting( ~E_DEPRECATED & ~E_NOTICE );
+ // but I strongly suggest you to use PDO or MySQLi.
+ 
+ define('DBHOST', '127.0.0.1');
+ define('DBUSER', 'root');
+ define('DBPASS', '');
+ define('DBNAME', 'hooscooking');
+ 
+ $conn = mysqli_connect(DBHOST,DBUSER,DBPASS);
+ $dbcon = mysqli_select_db($conn ,DBNAME);
+ 
+ if ( !$conn ) {
+  die("Connection failed : " . mysql_error());
+ }
+ 
+ if ( !$dbcon ) {
+  die("Database Connection failed : " . mysql_error());
+ }
+  
+   session_start();
+   
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
+      // emmail and password sent from form 
+      
+      $myemail= mysqli_real_escape_string($conn,$_POST['email']);
+      $mypassword = mysqli_real_escape_string($conn,$_POST['password']); 
+      $password = hash('sha256', $mypassword);
+	  
+      $sql = "SELECT id FROM user WHERE email = '$myemail' and password = '$password'";
+      $result = mysqli_query($conn,$sql);
+      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+      $active = $row['active'];
 
-    <div class="login">
-        <div class="login-screen">
+      $count = mysqli_num_rows($result);
+      
+      // If result matched $myusername and $mypassword, table row must be 1 row		
+      if($count == 1) {
+         #session_register("myemail");
+         $_SESSION['login_user'] = $myemail;
+         header("Location: index.html");
+      }else {
+         $error = "Your Login Name or Password is invalid";
+	
+      }
+   }
+?>
+
+
             
                 <h1>Login</h1>
            
-      <h2>Enter Username and Password</h2> 
-      <div class = "container form-signin">
-         
-         <?php
-            $msg = '';
-            
-            if (isset($_POST['login']) && !empty($_POST['username']) 
-               && !empty($_POST['password'])) {
+  <div align = "center">
+         <div style = "width:300px; border: solid 1px #333333; " align = "left">
+            <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
 				
-               if ($_POST['username'] == 'tutorialspoint' && 
-                  $_POST['password'] == '1234') {
-                  $_SESSION['valid'] = true;
-                  $_SESSION['timeout'] = time();
-                  $_SESSION['username'] = 'tutorialspoint';
-                  
-                  echo 'You have entered valid use name and password';
-               }else {
-                  $msg = 'Wrong username or password';
-               }
-            }
-         ?>
-      </div> <!-- /container -->
-     
-      <div class = "container">
-      
-         <form class = "form-signin" role = "form" 
-            action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']); 
-            ?>" method = "post">
-            <h4 class = "form-signin-heading"><?php echo $msg; ?></h4>
-            <input type = "text" class = "form-control" 
-               name = "username" placeholder = "username = tutorialspoint" 
-               required autofocus></br>
-            <input type = "password" class = "form-control"
-               name = "password" placeholder = "password = 1234" required>
-            <button class = "btn btn-lg btn-primary btn-block" type = "submit" 
-               name = "login">Login</button>
-         </form>
+            <div style = "margin:30px">
+               
+               <form action = "" method = "post">
+                  <label>Email  :</label><input type = "text" name = "email" class = "box"/><br /><br />
+                  <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
+                  <input type = "submit" value = " Submit "/><br />
+               </form>
+               
+               <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
+					
+            </div>
+				
+         </div>
 			
-         Click here to clean <a href = "logout.php" tite = "Logout">Session.
-         
-      </div> 
+      </div>
 
 
 <footer>
