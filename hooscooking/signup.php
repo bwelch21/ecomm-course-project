@@ -145,8 +145,8 @@ function clean_data ($data) {
   if( !$error ) {
 
    // password encrypt using SHA256();
-   $password = hash('sha256', $pass);
-   
+  // $password = hash('sha256', $pass);
+   $password = $pass;
    $query = "INSERT INTO user(firstname,lastname,email,address,city,state,zipcode,password) VALUES('$first_name','$last_name','$email','$street_address','$city','$state', '$zip_code','$password')";
    $res = mysqli_query($conn,$query);
    
@@ -317,28 +317,8 @@ box-shadow: none;
 
 
 <body>
-<header id="header" class="site-header" role="banner">
-    <div id="header-inner" class="container sixteen columns over">
-    <hgroup class="one-third column alpha">
-    <h1 id="site-title" class="site-title">
-    <a href="index.html" id="logo"><img src="images/logo2.png" alt="Icebrrrg logo" height="57" width="193" /></a>
-    </h1>
-    </hgroup>
-    <nav id="main-nav" class="two thirds column omega">
-    <ul id="main-nav-menu" class="nav-menu">
-    <li id="menu-item-1" >
-    <a href="index.html">Home</a>
-    </li>
-    <li id="menu-item-2">
-    <a href="about-us.html">About us</a>
-    </li>
-    <li id="menu-item-3" class="current">
-    <a href="login.html">Login</a> / <a href="signup.php">Sign Up</a>
-    </li>
-    </ul>
-    </nav>
-    </div>
-    </header>
+
+<?php include("header.html"); ?>
 
   <body>
 
