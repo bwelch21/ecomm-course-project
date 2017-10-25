@@ -110,7 +110,7 @@ if(isset($_POST["submit"])) {
 
 	<?php include("header.html"); ?>
 
-	<h1>Make a listing!</h1><br>
+	<h1 style="text-align: center;">Make a listing!</h1><br>
 
 	<div class="listing-form">
 		<form method="post" action="create_item.php" id="listing-form" class="form-style-6">
@@ -129,8 +129,8 @@ if(isset($_POST["submit"])) {
 			<div class="control-group">
 				<span class="error">* <?php echo $price_error; ?>
 				</span>
-				$ <input type="number" min="0.01" max="10000.00" value="1" step="0.01" placeholder="Product price" name="price">
-			</div>
+				<input type="number" min="0.01" max="10000.00" value="" step="0.01" placeholder="Product price" name="price">
+			</div><br>
 
 			<input id="button" type="submit" name="submit" value="Create listing">
 
