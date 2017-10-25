@@ -77,7 +77,14 @@ $res = mysqli_query($conn, $query);
       <div class="panel panel-primary">
         <div class="panel-heading">BLACK FRIDAY DEAL</div>
         <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
+        <div class="panel-footer">
+<form action="https://bitpay.com/checkout" method="post" >
+  <input type="hidden" name="action" value="checkout" />
+  <input type="hidden" name="posData" value="" />
+  <input type="hidden" name="data" value="dfrC3lbQRJhLXgMbHuZvwKT7uGeyLL93pXYZ9MzSUrlVvyfpRbZV4RqkomrAKHBR2DxvTjKkH54xAqh7WRfFw85Ah4zxHTnNraF0Rpnd0gU=" />
+  <input type="image" src="https://bitpay.com/img/button-medium.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
+</form>
+        </div>
       </div>
     </div>
   <?php else : ?>
