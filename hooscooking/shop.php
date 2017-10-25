@@ -1,3 +1,23 @@
+<?php
+
+define('DBHOST', '127.0.0.1');
+define('DBUSER', 'root');
+define('DBPASS', '');
+define('DBNAME', 'hoos_cooking');
+
+// Create connection
+$conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
+$res = "";
+// Check connection
+if(!$conn) {
+  die("Connection failed : " . $conn->connect_error);
+}
+
+$query = "SELECT * FROM food_item";
+$res = mysqli_query($conn, $query);
+
+?>
+
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -48,31 +68,11 @@
   <!-- Primary Page Layout
   ================================================== -->
 
-  <header id="header" class="site-header" role="banner">
-    <div id="header-inner" class="container sixteen columns over">
-    <hgroup class="one-third column alpha">
-    <h1 id="site-title" class="site-title">
-    <a href="index.html" id="logo"><img src="images/logo2.png" alt="Icebrrrg logo" height="57" width="193" /></a>
-    </h1>
-    </hgroup>
-    <nav id="main-nav" class="two thirds column omega">
-    <ul id="main-nav-menu" class="nav-menu">
-    <li id="menu-item-1" class="current">
-    <a href="index.html">Home</a>
-    </li>
-    <li id="menu-item-2">
-    <a href="about-us.html">About us</a>
-    </li>
-    <li id="menu-item-3">
-    <a href="login.html">Login</a> / <a href="signup.php">Sign Up</a>
-    </li>
-    </ul>
-    </nav>
-    </div>
-    </header>
+  <?php include("header.html"); ?>
 
 	<div class="container">    
  
+    <?php if(mysqli_num_rows($res) > 0) : ?>
     <div class="col-sm-4">
       <div class="panel panel-primary">
         <div class="panel-heading">BLACK FRIDAY DEAL</div>
@@ -80,6 +80,11 @@
         <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
       </div>
     </div>
+  <?php else : ?>
+    Nothing to show...
+  <?php endif ?>
+
+
     <div class="col-sm-4"> 
       <div class="panel panel-danger">
         <div class="panel-heading">BLACK FRIDAY DEAL</div>
