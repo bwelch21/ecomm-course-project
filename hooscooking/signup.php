@@ -14,7 +14,7 @@ function clean_data ($data) {
  define('DBHOST', '127.0.0.1');
  define('DBUSER', 'root');
  define('DBPASS', '');
- define('DBNAME', 'hooscooking');
+ define('DBNAME', 'hoos_cooking');
  
  $conn = mysqli_connect(DBHOST,DBUSER,DBPASS);
  $dbcon = mysqli_select_db($conn ,DBNAME);
@@ -388,32 +388,7 @@ box-shadow: none;
 
 
 
-<footer>
-
-<div class="footer sixteen columns over">
-
-<div class="social footer-columns ">
-<h3 align="middle" > Hoos Cooking, a community marketplace for homecooked meals.</h3>
-
-
-
-</div>
-
-</div>
-
-<div id="footer-base">
-<div class="container">
-<div class="eight columns">
-<a href="http://www.opendesigns.org/design/icebrrrg/">Icebrrg Website Template</a> &copy; 2012
-</div>
-
-<div class="eight columns far-edge">
-Design by <a href="http://www.opendesigns.org">OD</a>
-</div>
-</div>
-</div>
-
-</footer>
+<?php include("footer.html"); ?>
 
 </body>
   
