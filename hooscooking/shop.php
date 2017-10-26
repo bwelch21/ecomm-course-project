@@ -89,7 +89,7 @@ $res = mysqli_query($conn, $query);
             <form action="https://test.bitpay.com/checkout" method="post" >
             <input type="hidden" name="action" value="checkout" />
             <input type="hidden" name="posData" value="" />
-            <input type="hidden" name="amount" value=<?php echo $price; ?> />
+            <input type="hidden" name="price" value="<?php echo $price; ?>" />
             <input type="hidden" name="data" value="QPbavyRKP7VXn5XCsEIphEI6dvCRgRkXNBhOkH9PiEN4ICTsetECbq8w2gFhW5LjfD9HeEN8x/2LDPIYdm1waQ93VjUSKOziJeTqrTVEv7s=" />
             <input type="image" src="https://test.bitpay.com/img/button-large.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
 </form>
