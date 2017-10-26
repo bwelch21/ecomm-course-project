@@ -189,6 +189,8 @@ box-shadow: none;
   
    session_start();
    
+   $curr=$SESSION['login_user'];
+   
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // emmail and password sent from form 
       
@@ -218,7 +220,7 @@ box-shadow: none;
 
             
                 <h1>Login</h1>
-           
+         <h1> <?php echo $curr; ?></h1>
   <div align = "center">
          <div style = "width:300px; border: solid 1px #333333; " align = "left">
             <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>

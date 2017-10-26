@@ -11,7 +11,7 @@ function clean_data ($data) {
 define('DBHOST', '127.0.0.1');
 define('DBUSER', 'root');
 define('DBPASS', '');
-define('DBNAME', 'hoos_cooking');
+define('DBNAME', 'hooscooking');
 
 // Create connection
 $conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);

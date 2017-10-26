@@ -31,6 +31,8 @@ function clean_data ($data) {
  $error = false;
  $firstNameErr = $lastNameErr = $emailErr = $passErr = "";
  $cityErr = $stateErr = $streetErr = $zipErr = "";
+ 
+ 
 
  if ( isset($_POST['submit']) ) {
   
@@ -145,15 +147,47 @@ function clean_data ($data) {
   if( !$error ) {
 
    // password encrypt using SHA256();
-  // $password = hash('sha256', $pass);
-   $password = $pass;
+   $password = hash('sha256', $pass);
+   //$password = $pass;
    $query = "INSERT INTO user(firstname,lastname,email,address,city,state,zipcode,password) VALUES('$first_name','$last_name','$email','$street_address','$city','$state', '$zip_code','$password')";
    $res = mysqli_query($conn,$query);
    
    if ($res) {
 	$errTyp = "success";
 	$errMSG = "Successfully registered, you may login now";
-	unset($first_name);
+
+	
+	ini_set('SMTP', "server.com");
+ini_set('smtp_port', "25");
+ini_set('sendmail_from', "pineapplepunch1@gmail.com");
+	
+	
+	
+	$subject = 'Website Enquiry';
+
+// Your email address. This is where the form information will be sent.
+$emailadd = $email;
+// Where to redirect after form is processed.
+$url = 'login.php';
+
+// Makes all fields required. If set to '1' no field can not be empty. If set to '0' any or all fields can be empty.
+$req = '0';
+	
+	
+	
+	// Subject of confirmation email.
+$conf_subject = 'Your recent enquiry';
+
+// Who should the confirmation email be from?
+$conf_sender = 'Summer Thompson <pineapplepunch1@gmail.com>';
+
+$msg = $_POST['first_name'] . ",\n\nThank you for your recent enquiry. A member of our 
+team will respond to your message as soon as possible.";
+
+mail( $_POST['Email'], $conf_subject, $msg, 'From: ' . $conf_sender );
+	
+	
+		unset($first_name);
 	unset($last_name);
 	
 	unset($street_address);
@@ -162,6 +196,15 @@ function clean_data ($data) {
 	unset($zipcode);
 	unset($email);
 	unset($pass);
+	
+	
+	
+	
+	
+	
+	
+	
+	
    } else {
 	$errTyp = "danger";
 	$errMSG = "Something went wrong, try again later..."; 
