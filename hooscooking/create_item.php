@@ -64,12 +64,19 @@ if(isset($_POST["submit"])) {
     if($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+        	echo "The file ". basename( $_FILES["image"]["name"]). " has been uploaded.";
+    	} else {
+        	echo "Sorry, there was an error uploading your file.";
+        	$error = True;
+    	}
     } else {
         echo "File is not an image.";
         $uploadOk = 0;
         $error = True;
     }
 
+    echo $target_file;
 	if(!$error) {
 		$query = "INSERT INTO food_item(available,dish_name,price,product_description,seller_id,type_id,image) VALUES('1','$dish_name','$price','$product_description','1','1','$target_file')";
 		$res = mysqli_query($conn, $query);
@@ -160,4 +167,4 @@ if(isset($_POST["submit"])) {
 	<?php include("footer.html"); ?>
 
 </body>
-</html>
+</html>	
