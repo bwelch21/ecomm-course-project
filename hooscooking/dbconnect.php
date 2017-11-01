@@ -6,7 +6,7 @@
  
  define('DBHOST', '127.0.0.1');
  define('DBUSER', 'root');
- define('DBPASS', 'password');
+ define('DBPASS', '');
  define('DBNAME', 'hoos_cooking');
  
  $conn = mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME);
