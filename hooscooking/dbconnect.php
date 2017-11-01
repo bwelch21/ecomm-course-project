@@ -6,10 +6,10 @@
  
  define('DBHOST', '127.0.0.1');
  define('DBUSER', 'root');
- define('DBPASS', '');
- define('DBNAME', 'hooscooking');
+ define('DBPASS', 'password');
+ define('DBNAME', 'hoos_cooking');
  
- $conn = mysqli_connect(DBHOST,DBUSER,DBPASS);
+ $conn = mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME);
  $dbcon = mysqli_select_db($conn ,DBNAME);
  
  if ( !$conn ) {
@@ -19,3 +19,5 @@
  if ( !$dbcon ) {
   die("Database Connection failed : " . mysql_error());
  }
+
+ ?>

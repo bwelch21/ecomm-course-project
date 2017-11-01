@@ -5,45 +5,12 @@
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-
-  <!-- Basic Page Needs
-  ================================================== -->
   <meta charset="utf-8">
-  <title>About Us |  by OD</title>
+  <title>About Us</title>
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <!-- Mobile Specific Metas
-  ================================================== -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <!-- CSS
-  ================================================== -->
-  <link rel="stylesheet" href="stylesheets/base.css">
-  <link rel="stylesheet" href="stylesheets/skeleton.css">
-  <link rel="stylesheet" href="stylesheets/layout.css">
-    <link rel="stylesheet" href="stylesheets/flexslider.css">
-    <link rel="stylesheet" href="stylesheets/prettyPhoto.css">
-    
-    
-    <!-- CSS
-  ================================================== -->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-    <script src="js/jquery.flexslider-min.js"></script>
-    <script src="js/scripts.js"></script>
-
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-
-  <!-- Favicons
-  ================================================== -->
-  <link rel="shortcut icon" href="images/favicon.ico">
-  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-
 </head>
+
 <body>
 
 
@@ -150,35 +117,7 @@
     
     </div>
 
-<footer>
-
-<div class="footer sixteen columns over">
-
-<div class="social footer-columns ">
-<h3 align="middle" > Hoos Cooking, a community marketplace for homecooked meals.</h3>
-
-
-
-</div>
-
-</div>
-
-<div id="footer-base">
-<div class="container">
-<div class="eight columns">
-<a href="http://www.opendesigns.org/design/icebrrrg/">Icebrrg Website Template</a> &copy; 2012
-</div>
-
-<div class="eight columns far-edge">
-Design by <a href="http://www.opendesigns.org">OD</a>
-</div>
-</div>
-</div>
-
-</footer>
-
-<!-- End Document
-================================================== -->
+<?php include("footer.html"); ?>
 
 <script src="js/jquery.prettyPhoto.js"></script>
 </body>

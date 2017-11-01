@@ -1,3 +1,4 @@
+<?php include("dbconnect.php"); ?>
 <?php
 
 function clean_data ($data) {
@@ -6,19 +7,6 @@ function clean_data ($data) {
 	$data = strip_tags($data);
  	$data = htmlspecialchars($data);
  	return $data;
-}
-
-define('DBHOST', '127.0.0.1');
-define('DBUSER', 'root');
-define('DBPASS', '');
-define('DBNAME', 'hoos_cooking');
-
-// Create connection
-$conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
-$res = "";
-// Check connection
-if(!$conn) {
-	die("Connection failed : " . $conn->connect_error);
 }
 
 // Define variables
@@ -80,24 +68,6 @@ if(isset($_POST["submit"])) {
   	<meta name="description" content="">
   	<meta name="author" content="">
 
-  	<!-- Mobile Specific Metas ================================================== -->
-  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  	<!-- CSS ================================================== -->
-  	<link rel="stylesheet" href="stylesheets/base.css">
-  	<link rel="stylesheet" href="stylesheets/skeleton.css">
-  	<link rel="stylesheet" href="stylesheets/layout.css">
-	<link rel="stylesheet" href="stylesheets/flexslider.css">
-	<link rel="stylesheet" href="stylesheets/prettyPhoto.css">
-	<link rel="stylesheet" href="stylesheets/form.css">
-	
-	<!-- CSS ================================================== -->
-  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-	<script src="js/jquery.flexslider-min.js"></script>
-	<script src="js/scripts.js"></script>
-
-  	<!-- Favicons ================================================== -->
-	<link rel="shortcut icon" href="images/hat_icon.png">
   
   <style>
   	.error {color: #FF0000;}

@@ -1,3 +1,5 @@
+<?php include("dbconnect.php"); ?>
+
 <?php
 
 function clean_data ($data) {
@@ -7,25 +9,6 @@ function clean_data ($data) {
  	$data = htmlspecialchars($data);
  	return $data;
 }	
- // this will avoid mysql_connect() deprecation error.
- error_reporting( ~E_DEPRECATED & ~E_NOTICE );
- // but I strongly suggest you to use PDO or MySQLi.
- 
- define('DBHOST', '127.0.0.1');
- define('DBUSER', 'root');
- define('DBPASS', '');
- define('DBNAME', 'hoos_cooking');
- 
- $conn = mysqli_connect(DBHOST,DBUSER,DBPASS);
- $dbcon = mysqli_select_db($conn ,DBNAME);
- 
- if ( !$conn ) {
-  die("Connection failed : " . mysql_error());
- }
- 
- if ( !$dbcon ) {
-  die("Database Connection failed : " . mysql_error());
- }
 
  // setting the error codes to default values
  $error = false;
@@ -45,7 +28,7 @@ function clean_data ($data) {
 		$first_name = clean_data($_POST["first_name"]);
 		
 	}
-	//$echo $first_name;
+
 	
 	//clean last name ---------------------------------------------------
 	if (empty($_POST["last_name"])) {
@@ -137,13 +120,11 @@ function clean_data ($data) {
 	}
   
   
-	//echo $zip_code;
-	//echo $state;
-	//echo $first_name;
-   
+
+   $error = false; 
   // if there's no error, continue to signup
   if( !$error ) {
-
+	
    // password encrypt using SHA256();
   // $password = hash('sha256', $pass);
    $password = $pass;
@@ -166,12 +147,9 @@ function clean_data ($data) {
 	$errTyp = "danger";
 	$errMSG = "Something went wrong, try again later..."; 
    } 
-	
+	}
   }
-
  
-  
- }
 	
 ?>
 <!DOCTYPE html>
@@ -262,7 +240,46 @@ box-shadow: none;
   display: block;
 	margin-top: 12px;
 }
-	  </style>
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
   
 
 <!DOCTYPE html>
@@ -322,6 +339,17 @@ box-shadow: none;
 
   <body>
 
+  	<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
+
+</div>
+
 	<div class="login">
 		<div class="login-screen">
 			
@@ -378,7 +406,7 @@ box-shadow: none;
 				<input type="text" class="login-field" value="" placeholder="zip code" name="zip_code">
 				</div>
 
-		  <input id="button" type="submit" name="submit" value="Sign-Up">
+		  		<input id="button" type="submit" name="submit" value="Sign-Up">
 
 				<br><br><br>
 			 </form>
