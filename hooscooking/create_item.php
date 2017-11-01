@@ -9,22 +9,7 @@ function clean_data ($data) {
  	return $data;
 }
 
-<<<<<<< HEAD
-define('DBHOST', '127.0.0.1');
-define('DBUSER', 'root');
-define('DBPASS', '');
-define('DBNAME', 'hooscooking');
 
-// Create connection
-$conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
-$res = "";
-// Check connection
-if(!$conn) {
-	die("Connection failed : " . $conn->connect_error);
-}
-
-=======
->>>>>>> 3682e34c17c5907d9e8382f654f424c8e4b55fc4
 // Define variables
 $dish_name = $price = $product_description = "";
 
