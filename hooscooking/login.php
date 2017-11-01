@@ -1,10 +1,7 @@
+<?php include("dbconnect.php"); ?>
+
+
 <!DOCTYPE html>
-<html >
-<head>
-  <meta charset="UTF-8">
-  <title>Login Form</title>
-  
-  
   
       <link rel="stylesheet" href="css/style.css">
       <style>
@@ -90,12 +87,7 @@ box-shadow: none;
 }
       </style>
   
-
-<!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<html lang="en"> <!--<![endif]-->
 <head>
 
   <!-- Basic Page Needs
@@ -104,36 +96,12 @@ box-shadow: none;
   <title>Login</title>
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <!-- Mobile Specific Metas
-  ================================================== -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <!-- CSS
-  ================================================== -->
-  <link rel="stylesheet" href="stylesheets/base.css">
-  <link rel="stylesheet" href="stylesheets/skeleton.css">
-  <link rel="stylesheet" href="stylesheets/layout.css">
-    <link rel="stylesheet" href="stylesheets/flexslider.css">
-    <link rel="stylesheet" href="stylesheets/prettyPhoto.css">
-    
-    <!-- CSS
-  ================================================== -->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-    <script src="js/jquery.flexslider-min.js"></script>
-    <script src="js/scripts.js"></script>
-
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-
-  <!-- Favicons
-  ================================================== -->
-  <link rel="shortcut icon" href="images/hat_icon.png">
-
+ 
+  
 </head>
 
 
+<?php include("header.html"); ?>  
 
 
 
@@ -141,32 +109,10 @@ box-shadow: none;
 
 <body>
 
-<?php include("header.html"); ?>
 
   <body>
   
-  <?php
-  
-   // this will avoid mysql_connect() deprecation error.
- error_reporting( ~E_DEPRECATED & ~E_NOTICE );
- // but I strongly suggest you to use PDO or MySQLi.
- 
- define('DBHOST', '127.0.0.1');
- define('DBUSER', 'root');
- define('DBPASS', '');
- define('DBNAME', 'hooscooking');
- 
- $conn = mysqli_connect(DBHOST,DBUSER,DBPASS);
- $dbcon = mysqli_select_db($conn ,DBNAME);
- 
- if ( !$conn ) {
-  die("Connection failed : " . mysql_error());
- }
- 
- if ( !$dbcon ) {
-  die("Database Connection failed : " . mysql_error());
- }
-  
+  <?php  
    session_start();
    
    $curr=$SESSION['login_user'];
@@ -222,32 +168,8 @@ box-shadow: none;
       </div>
 
 
-<footer>
+<?php include("footer.html"); ?>  
 
-<div class="footer sixteen columns over">
-
-<div class="social footer-columns ">
-<h3 align="middle" > Hoos Cooking, a community marketplace for homecooked meals.</h3>
-
-
-
-</div>
-
-</div>
-
-<div id="footer-base">
-<div class="container">
-<div class="eight columns">
-<a href="http://www.opendesigns.org/design/icebrrrg/">Icebrrg Website Template</a> &copy; 2012
-</div>
-
-<div class="eight columns far-edge">
-Design by <a href="http://www.opendesigns.org">OD</a>
-</div>
-</div>
-</div>
-
-</footer>
 
 </body>
   

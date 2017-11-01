@@ -1,22 +1,4 @@
-<?php
-
-define('DBHOST', '127.0.0.1');
-define('DBUSER', 'root');
-define('DBPASS', '');
-define('DBNAME', 'hoos_cooking');
-
-// Create connection
-$conn = new mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
-$res = "";
-// Check connection
-if(!$conn) {
-  die("Connection failed : " . $conn->connect_error);
-}
-
-$query = "SELECT * FROM food_item";
-$res = mysqli_query($conn, $query);
-
-?>
+<?php include("dbconnect.php"); ?>
 
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
@@ -28,37 +10,9 @@ $res = mysqli_query($conn, $query);
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>Hoos Cooking Home</title>
+  <title>Ahop</title>
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <!-- Mobile Specific Metas
-  ================================================== -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <!-- CSS
-  ================================================== -->
-  <link rel="stylesheet" href="stylesheets/base.css">
-  <link rel="stylesheet" href="stylesheets/skeleton.css">
-  <link rel="stylesheet" href="stylesheets/layout.css">
-    <link rel="stylesheet" href="stylesheets/flexslider.css">
-    <link rel="stylesheet" href="stylesheets/prettyPhoto.css">
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- 
-    <!-- CSS
-  ================================================== -->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-    <script src="js/jquery.flexslider-min.js"></script>
-    <script src="js/scripts.js"></script>
-
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-
-  <!-- Favicons
-  ================================================== -->
-  <link rel="shortcut icon" href="images/hat_icon.png">
 
 </head>
 <body class="wrap">
@@ -72,26 +26,31 @@ $res = mysqli_query($conn, $query);
 
 	<div class="container">    
  
+    <?php $query = "SELECT * FROM food_item";
+          $res = mysqli_query($conn, $query);
+    ?>
+
     <?php if(mysqli_num_rows($res) > 0) : ?>
 
       <?php while($record = mysqli_fetch_assoc($res)) {
           $dish_name = $record["dish_name"];
           $product_description = $record["product_description"];
           $price = $record["price"];
-          $image = $record["image"];
+          $posted = $record["posted"];
       ?>
     
       <div class="col-sm-4">
         <div class="panel panel-primary">
-          <div class="panel-heading"><?php echo $dish_name . "... $" . $price; ?></div>
-          <div class="panel-body"><img src="uploads/" style="width:100%"></div>
-          <div class="panel-footer"><?php echo $product_description; ?>
+          <div class="panel-heading"><h4><?php echo $dish_name; ?></h4><div align="right"><b><?php echo "$" . $price; ?></b></div></div>
+          <div class="panel-body"><?php echo $product_description; ?><br><br><b>Posted at <?php echo $posted; ?></b></div>
+          <div class="panel-footer">
             <form action="https://test.bitpay.com/checkout" method="post" >
             <input type="hidden" name="action" value="checkout" />
             <input type="hidden" name="posData" value="" />
             <input type="hidden" name="price" value="<?php echo $price; ?>" />
             <input type="hidden" name="data" value="QPbavyRKP7VXn5XCsEIphEI6dvCRgRkXNBhOkH9PiEN4ICTsetECbq8w2gFhW5LjfD9HeEN8x/2LDPIYdm1waQ93VjUSKOziJeTqrTVEv7s=" />
             <input type="image" src="https://test.bitpay.com/img/button-large.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
+
 </form>
           </div>
         </div>
@@ -131,7 +90,7 @@ Design by <a href="http://www.opendesigns.org">OD</a>
 <!-- End Document
 ================================================== -->
 
-<script src="js/jquery.prettyPhoto.js"></script>
+
 </body>
 </html>
 

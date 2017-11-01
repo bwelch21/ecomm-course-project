@@ -1,3 +1,5 @@
+<?php include("dbconnect.php"); ?>
+
 <?php
 
 function clean_data ($data) {
@@ -7,25 +9,6 @@ function clean_data ($data) {
  	$data = htmlspecialchars($data);
  	return $data;
 }	
- // this will avoid mysql_connect() deprecation error.
- error_reporting( ~E_DEPRECATED & ~E_NOTICE );
- // but I strongly suggest you to use PDO or MySQLi.
- 
- define('DBHOST', '127.0.0.1');
- define('DBUSER', 'root');
- define('DBPASS', '');
- define('DBNAME', 'hooscooking');
- 
- $conn = mysqli_connect(DBHOST,DBUSER,DBPASS);
- $dbcon = mysqli_select_db($conn ,DBNAME);
- 
- if ( !$conn ) {
-  die("Connection failed : " . mysql_error());
- }
- 
- if ( !$dbcon ) {
-  die("Database Connection failed : " . mysql_error());
- }
 
  // setting the error codes to default values
  $error = false;
@@ -47,7 +30,7 @@ function clean_data ($data) {
 		$first_name = clean_data($_POST["first_name"]);
 		
 	}
-	//$echo $first_name;
+
 	
 	//clean last name ---------------------------------------------------
 	if (empty($_POST["last_name"])) {
@@ -139,13 +122,11 @@ function clean_data ($data) {
 	}
   
   
-	//echo $zip_code;
-	//echo $state;
-	//echo $first_name;
-   
+
+   $error = false; 
   // if there's no error, continue to signup
   if( !$error ) {
-
+	
    // password encrypt using SHA256();
    $password = hash('sha256', $pass);
    //$password = $pass;
@@ -209,12 +190,9 @@ mail( $_POST['Email'], $conf_subject, $msg, 'From: ' . $conf_sender );
 	$errTyp = "danger";
 	$errMSG = "Something went wrong, try again later..."; 
    } 
-	
+	}
   }
-
  
-  
- }
 	
 ?>
 <!DOCTYPE html>
@@ -241,10 +219,10 @@ padding: 50px;
 }
 .login {
 margin: 5px auto;
-width: 300px;
+width: 500px;
 }
 .login-screen {
-background-color: #FFF;
+background-color: #Fff;
 padding: 20px;
 border-radius: 5px
 }
@@ -305,7 +283,46 @@ box-shadow: none;
   display: block;
 	margin-top: 12px;
 }
-	  </style>
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
   
 
 <!DOCTYPE html>
@@ -365,22 +382,35 @@ box-shadow: none;
 
   <body>
 
+  	<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
+
+</div>
+
 	<div class="login">
 		<div class="login-screen">
-			
+			<center>
 				<h1>Create an Account</h1>
 		   
 
 			<div class="login-form">
 			<form method="post" action="signup.php" autocomplete="off">
-				 
+				 <center>
 				<div class="control-group">
+				<label>First Name</label>
 				<span class = "error"> <?php echo $firstNameErr;?></span>
 				<input type="text" class="login-field" value="" placeholder="first name" name="first_name" id="first_name">
 				</div>
 				
 				<div class="control-group">
-				<span class = "error"> <?php echo $lastNameErr;?></span>
+				<label>Last Name</label>
+				<span class = "error"> <?php echo $lastNameErr;?></span>			
 				<input type="text" class="login-field" value="" placeholder="last name" name="last_name">
 				</div>
 
@@ -388,40 +418,100 @@ box-shadow: none;
 		
 
 				<div class="control-group">
-				<span class = "error"> <?php echo $emailErr;?></span>
+				<label>Email Address</label>
+				<span class = "error"> <?php echo $emailErr;?></span>		
 				<input type="text" class="login-field" value="" placeholder="email address" name="email">
 				</div>
 
 				<div class="control-group">
+				<label>Password</label>
 				<span class = "error"> <?php echo $passErr;?></span>
 				<input type="password" class="login-field" value="" placeholder="password" name="pass">
 				</div>
 
 				<div class="control-group">
+				<label>Confirm Password</label>
 				<input type="password" class="login-field" value="" placeholder="confirm password" name="pass_confirm">
 				</div>
 				
 				<div class="control-group">
-				<span class = "error"> <?php echo $streetErr;?></span>
+				<label>Street Address</label>
+				<span class = "error"> <?php echo $streetErr;?></span>				
 				<input type="text" class="login-field" value="" placeholder="street address" name="street_address">
 				</div>
 				
 				<div class="control-group">
+				<label>City</label>
 				<span class = "error"> <?php echo $cityErr;?></span>
 				<input type="text" class="login-field" value="" placeholder="city" name="city">
 				</div>
 
 				<div class="control-group">
+				<label>State</label>
 				<span class = "error"> <?php echo $stateErr;?></span>
-				<input type="text" class="login-field" value="" placeholder="state" name="state">
+				<select  class="login-field" value=""  name="state">
+	<option value="AL">Alabama</option>
+	<option value="AK">Alaska</option>
+	<option value="AZ">Arizona</option>
+	<option value="AR">Arkansas</option>
+	<option value="CA">California</option>
+	<option value="CO">Colorado</option>
+	<option value="CT">Connecticut</option>
+	<option value="DE">Delaware</option>
+	<option value="DC">District Of Columbia</option>
+	<option value="FL">Florida</option>
+	<option value="GA">Georgia</option>
+	<option value="HI">Hawaii</option>
+	<option value="ID">Idaho</option>
+	<option value="IL">Illinois</option>
+	<option value="IN">Indiana</option>
+	<option value="IA">Iowa</option>
+	<option value="KS">Kansas</option>
+	<option value="KY">Kentucky</option>
+	<option value="LA">Louisiana</option>
+	<option value="ME">Maine</option>
+	<option value="MD">Maryland</option>
+	<option value="MA">Massachusetts</option>
+	<option value="MI">Michigan</option>
+	<option value="MN">Minnesota</option>
+	<option value="MS">Mississippi</option>
+	<option value="MO">Missouri</option>
+	<option value="MT">Montana</option>
+	<option value="NE">Nebraska</option>
+	<option value="NV">Nevada</option>
+	<option value="NH">New Hampshire</option>
+	<option value="NJ">New Jersey</option>
+	<option value="NM">New Mexico</option>
+	<option value="NY">New York</option>
+	<option value="NC">North Carolina</option>
+	<option value="ND">North Dakota</option>
+	<option value="OH">Ohio</option>
+	<option value="OK">Oklahoma</option>
+	<option value="OR">Oregon</option>
+	<option value="PA">Pennsylvania</option>
+	<option value="RI">Rhode Island</option>
+	<option value="SC">South Carolina</option>
+	<option value="SD">South Dakota</option>
+	<option value="TN">Tennessee</option>
+	<option value="TX">Texas</option>
+	<option value="UT">Utah</option>
+	<option value="VT">Vermont</option>
+	<option value="VA">Virginia</option>
+	<option value="WA">Washington</option>
+	<option value="WV">West Virginia</option>
+	<option value="WI">Wisconsin</option>
+	<option value="WY">Wyoming</option>
+</select>			
+		
 				</div>
 
 				<div class="control-group">
+				<label>Zip Code</label>
 				<span class = "error"> <?php echo $zipErr;?></span>
 				<input type="text" class="login-field" value="" placeholder="zip code" name="zip_code">
 				</div>
 
-		  <input id="button" type="submit" name="submit" value="Sign-Up">
+		  		<input id="button" type="submit" name="submit" value="Sign-Up">
 
 				<br><br><br>
 			 </form>
@@ -431,32 +521,7 @@ box-shadow: none;
 
 
 
-<footer>
-
-<div class="footer sixteen columns over">
-
-<div class="social footer-columns ">
-<h3 align="middle" > Hoos Cooking, a community marketplace for homecooked meals.</h3>
-
-
-
-</div>
-
-</div>
-
-<div id="footer-base">
-<div class="container">
-<div class="eight columns">
-<a href="http://www.opendesigns.org/design/icebrrrg/">Icebrrg Website Template</a> &copy; 2012
-</div>
-
-<div class="eight columns far-edge">
-Design by <a href="http://www.opendesigns.org">OD</a>
-</div>
-</div>
-</div>
-
-</footer>
+<?php include("footer.html"); ?>
 
 </body>
   
