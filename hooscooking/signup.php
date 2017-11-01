@@ -235,6 +235,10 @@ color: #777;
 .login-form {
 text-align: center;
 }
+
+.login-field {
+width: 210px;
+}
 .control-group {
 margin-bottom: 10px;
 }
