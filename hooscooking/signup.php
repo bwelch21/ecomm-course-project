@@ -123,7 +123,7 @@ function clean_data ($data) {
   
   
 
-   $error = false; 
+  // $error = false; 
   // if there's no error, continue to signup
   if( !$error ) {
 	
