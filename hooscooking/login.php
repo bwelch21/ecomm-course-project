@@ -101,20 +101,17 @@ box-shadow: none;
 </head>
 
 
-<?php include("header.html"); ?>  
+<?php include("header.php"); ?>  
 
 
 
 
 
-<body>
+<body style="margin-top: 150px;">
 
 
-  <body>
   
   <?php  
-   session_start();
-   
    if(isset($_SESSION['login_user'])){
 		header("location: memberhome.php");
 	}
@@ -148,9 +145,7 @@ box-shadow: none;
 ?>
 
 
-            
-                <h1>Login</h1>
-     
+        
   <div align = "center">
          <div style = "width:300px; border: solid 1px #333333; " align = "left">
             <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
@@ -175,7 +170,7 @@ box-shadow: none;
 <?php include("footer.html"); ?>  
 
 
-</body>
+
   
   
 </body>

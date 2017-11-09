@@ -76,7 +76,9 @@ body, html {
 </head>
 <body>
 
-<?php include("header.html"); ?>
+<?php
+ include("header.php"); 
+?>
 
 <!-- First Parallax Image with Logo Text -->
 <div class="bgimg-1 w3-display-container" id="home">

@@ -378,7 +378,7 @@ box-shadow: none;
 
 <body>
 
-<?php include("header.html"); ?>
+<?php include("header.php"); ?>
 
   <body>
 

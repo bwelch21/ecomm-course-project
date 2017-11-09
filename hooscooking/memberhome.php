@@ -44,7 +44,7 @@ customer information, ability to edit customer info, etc.-->
 
 
 <body>
-  <?php include("header.html"); ?>
+  <?php include("header.php"); ?>
 
 
 

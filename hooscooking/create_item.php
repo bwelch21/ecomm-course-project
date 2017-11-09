@@ -76,7 +76,7 @@ if(isset($_POST["submit"])) {
 
 </head>
 
-<body>
+<body style="margin-top: 150px;">
 
 	<?php include("header.html"); ?>
 
