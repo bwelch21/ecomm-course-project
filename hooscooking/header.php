@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="images/hat_icon.png">
 </head>
 
-<?phpsession_start(); ?>
+
 <!-- HEADER =================================================== -->
 <header id="header" class="site-header w3-top w3-white" >
     <div id="header-inner" class="container sixteen columns over" >
@@ -39,11 +39,13 @@
 				
 				<?php if((isset($_SESSION['login_user'])))
 				{?>
-						
-                <li id="menu-item-3">
+				<li id="menu-item-3">
+                    <a href="memberhome.php">Profile</a>
+                </li>	
+                <li id="menu-item-4">
                     <a href="create_item.php">Sell</a>
                 </li>
-                <li id="menu-item-4">
+                <li id="menu-item-5">
                     <a href="shop.php">Shop</a>
                 </li>
 				
@@ -55,7 +57,7 @@
 				
 				if(!(isset($_SESSION['login_user'])))
 				{?>
-				<li id="menu-item-5" >
+				<li id="menu-item-3" >
                     <a href="login.php">Login</a> / <a href="signup.php">Sign Up</a>
                 </li>
 				
@@ -65,7 +67,7 @@
 				
 				if((isset($_SESSION['login_user'])))
 				{?>
-				<li id="menu-item-5" >
+				<li id="menu-item-6" >
                     <a href="logout.php">Logout</a>
                 </li>
 				

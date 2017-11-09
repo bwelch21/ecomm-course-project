@@ -13,7 +13,9 @@
 
 </head>
 
-<?php include("header.php"); ?>
+<?php
+ session_start();
+ include("header.php"); ?>
 <body class="wrap" style="margin-top: 150px;">
 
 

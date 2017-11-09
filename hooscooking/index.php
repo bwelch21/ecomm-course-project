@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <title>Home</title>
@@ -77,7 +78,7 @@ body, html {
 <body>
 
 <?php
-
+session_start(); 
  include("header.php"); 
  
 ?>
