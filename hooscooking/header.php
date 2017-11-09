@@ -36,12 +36,20 @@
                 <li id="menu-item-2">
                     <a href="index.php#about">About us</a>
                 </li>
+				
+				<?php if((isset($_SESSION['login_user'])))
+				{?>
+						
                 <li id="menu-item-3">
                     <a href="create_item.php">Sell</a>
                 </li>
                 <li id="menu-item-4">
                     <a href="shop.php">Shop</a>
                 </li>
+				
+				<?php
+				}?>
+		
 				
 				<?php
 				

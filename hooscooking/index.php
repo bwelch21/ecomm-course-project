@@ -77,7 +77,9 @@ body, html {
 <body>
 
 <?php
+
  include("header.php"); 
+ 
 ?>
 
 <!-- First Parallax Image with Logo Text -->
