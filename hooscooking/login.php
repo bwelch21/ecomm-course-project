@@ -115,7 +115,11 @@ box-shadow: none;
   <?php  
    session_start();
    
-   $curr=$SESSION['login_user'];
+   if(isset($_SESSION['login_user'])){
+		header("location: memberhome.php");
+	}
+   
+   
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // emmail and password sent from form 
@@ -135,7 +139,7 @@ box-shadow: none;
       if($count == 1) {
          #session_register("myemail");
          $_SESSION['login_user'] = $myemail;
-         header("Location: index.html");
+         header("Location: memberhome.php");
       }else {
          $error = "Your Login Name or Password is invalid";
 	
@@ -146,7 +150,7 @@ box-shadow: none;
 
             
                 <h1>Login</h1>
-         <h1> <?php echo $curr; ?></h1>
+     
   <div align = "center">
          <div style = "width:300px; border: solid 1px #333333; " align = "left">
             <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
