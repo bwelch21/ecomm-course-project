@@ -1,5 +1,12 @@
 <!DOCTYPE html>
-<?php include("dbconnect.php"); ?>
+<?php include("dbconnect.php"); 
+
+session_start();
+if(!(isset($_SESSION['login_user'])))
+{
+    header("Location: index.php");
+}
+?>
  
  <!-- Create a ‘Member Home Page’ that users can access either via successfully
 signing up for your service, or through the ‘Login’ page if they have already
