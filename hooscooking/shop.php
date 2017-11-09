@@ -48,6 +48,7 @@
             <input type="hidden" name="action" value="checkout" />
             <input type="hidden" name="posData" value="" />
             <input type="hidden" name="price" value="<?php echo $price; ?>" />
+            <input type="hidden" name="redirectURL" value="http://localhost:8080/ecomm-course-project/hooscooking/transaction_successful.php" />
             <input type="hidden" name="data" value="QPbavyRKP7VXn5XCsEIphEI6dvCRgRkXNBhOkH9PiEN4ICTsetECbq8w2gFhW5LjfD9HeEN8x/2LDPIYdm1waQ93VjUSKOziJeTqrTVEv7s=" />
             <input type="image" src="https://test.bitpay.com/img/button-large.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
         <?php endif ?>
