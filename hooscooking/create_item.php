@@ -9,6 +9,7 @@ function clean_data ($data) {
  	return $data;
 }
 
+
 // Define variables
 $dish_name = $price = $product_description = "";
 

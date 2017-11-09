@@ -98,7 +98,7 @@ body, html {
     </div>
 
     <!-- Hide this text on small devices -->
-    <div class="w3-col m6 w3-hide-small w3-padding-large">
+    <div class="w3-col m6 w3-padding-large">
       <p>Hoo’s Home Cooking shared marketplace allows you to be a cook, consumer, or even both! If you are preparing a meal and are anticipating multiple portions of leftovers you can easily avoid food waste by placing a notification on our marketplace. With our easy to use interface cooks can easily specify ingredients, flag major food allergens, specify price, indicate price and set a window for pickup time. All customers have to do is <strong>pay, pickup and enjoy </strong>their meal. </p>
       <p>We hope to foster a <strong>community</strong> platform where students and faculty and share portions of their home cooked meal for a profit. A valid virginia.edu email is required for sign up, we hope our home cooked community reflects the integrity of the UVA community. </p>
 
