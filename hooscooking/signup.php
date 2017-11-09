@@ -54,7 +54,7 @@ function clean_data ($data) {
 	} else {
 		$email = clean_data($_POST["email"]);
 			$my_sql_query = mysqli_query($conn,"SELECT email FROM user WHERE email='$email'");
-	if (mysqli_num_rows($my_sql_query)!=0){
+	if (mysqli_num_rows($my_sql_query)>0){
 		$emailErr = "An account with this email address already exists, please login or enter a different email";
 		$error = true;
 	}

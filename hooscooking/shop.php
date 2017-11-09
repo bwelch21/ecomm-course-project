@@ -37,7 +37,8 @@
           $price = $record["price"];
           $posted = $record["posted"];
       ?>
-    
+      
+      <?php if($record[available]) : ?>
       <div class="col-sm-4">
         <div class="panel panel-primary">
           <div class="panel-heading"><h4><?php echo $dish_name; ?></h4><div align="right"><b><?php echo "$" . $price; ?></b></div></div>
@@ -49,6 +50,7 @@
             <input type="hidden" name="price" value="<?php echo $price; ?>" />
             <input type="hidden" name="data" value="QPbavyRKP7VXn5XCsEIphEI6dvCRgRkXNBhOkH9PiEN4ICTsetECbq8w2gFhW5LjfD9HeEN8x/2LDPIYdm1waQ93VjUSKOziJeTqrTVEv7s=" />
             <input type="image" src="https://test.bitpay.com/img/button-large.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
+        <?php endif ?>
 
 </form>
           </div>
