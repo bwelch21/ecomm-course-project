@@ -1,10 +1,7 @@
 <?php include("dbconnect.php"); ?>
 
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<html lang="en"> <!--<![endif]-->
 <head>
 
   <!-- Basic Page Needs
@@ -15,6 +12,8 @@
   <meta name="author" content="">
 
 </head>
+
+<?php include("header.html"); ?>
 <body class="wrap">
 
 
@@ -22,7 +21,7 @@
   <!-- Primary Page Layout
   ================================================== -->
 
-  <?php include("header.html"); ?>
+  
 
 	<div class="container">    
  

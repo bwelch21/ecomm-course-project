@@ -14,6 +14,8 @@ function clean_data ($data) {
  $error = false;
  $firstNameErr = $lastNameErr = $emailErr = $passErr = "";
  $cityErr = $stateErr = $streetErr = $zipErr = "";
+ 
+ 
 
  if ( isset($_POST['submit']) ) {
   
@@ -121,20 +123,52 @@ function clean_data ($data) {
   
   
 
-   $error = false; 
+  // $error = false; 
   // if there's no error, continue to signup
   if( !$error ) {
 	
    // password encrypt using SHA256();
-  // $password = hash('sha256', $pass);
-   $password = $pass;
+   $password = hash('sha256', $pass);
+   //$password = $pass;
    $query = "INSERT INTO user(firstname,lastname,email,address,city,state,zipcode,password) VALUES('$first_name','$last_name','$email','$street_address','$city','$state', '$zip_code','$password')";
    $res = mysqli_query($conn,$query);
    
    if ($res) {
 	$errTyp = "success";
 	$errMSG = "Successfully registered, you may login now";
-	unset($first_name);
+
+	
+	ini_set('SMTP', "server.com");
+ini_set('smtp_port', "25");
+ini_set('sendmail_from', "pineapplepunch1@gmail.com");
+	
+	
+	
+	$subject = 'Website Enquiry';
+
+// Your email address. This is where the form information will be sent.
+$emailadd = $email;
+// Where to redirect after form is processed.
+$url = 'login.php';
+
+// Makes all fields required. If set to '1' no field can not be empty. If set to '0' any or all fields can be empty.
+$req = '0';
+	
+	
+	
+	// Subject of confirmation email.
+$conf_subject = 'Your recent enquiry';
+
+// Who should the confirmation email be from?
+$conf_sender = 'Summer Thompson <pineapplepunch1@gmail.com>';
+
+$msg = $_POST['first_name'] . ",\n\nThank you for your recent enquiry. A member of our 
+team will respond to your message as soon as possible.";
+
+mail( $_POST['Email'], $conf_subject, $msg, 'From: ' . $conf_sender );
+	
+	
+		unset($first_name);
 	unset($last_name);
 	
 	unset($street_address);
@@ -146,6 +180,7 @@ function clean_data ($data) {
    	
    	header("Location: http://localhost:8080/ecomm-course-project/hooscooking/registration_successful.php");
    	exit;
+
 
    } else {
 	$errTyp = "danger";
@@ -180,10 +215,10 @@ padding: 50px;
 }
 .login {
 margin: 5px auto;
-width: 300px;
+width: 500px;
 }
 .login-screen {
-background-color: #FFF;
+background-color: #Fff;
 padding: 20px;
 border-radius: 5px
 }
@@ -195,6 +230,10 @@ color: #777;
 
 .login-form {
 text-align: center;
+}
+
+.login-field {
+width: 210px;
 }
 .control-group {
 margin-bottom: 10px;
@@ -356,20 +395,22 @@ box-shadow: none;
 
 	<div class="login">
 		<div class="login-screen">
-			
+			<center>
 				<h1>Create an Account</h1>
 		   
 
 			<div class="login-form">
 			<form method="post" action="signup.php" autocomplete="off">
-				 
+				 <center>
 				<div class="control-group">
+				<label>First Name</label>
 				<span class = "error"> <?php echo $firstNameErr;?></span>
 				<input type="text" class="login-field" value="" placeholder="first name" name="first_name" id="first_name">
 				</div>
 				
 				<div class="control-group">
-				<span class = "error"> <?php echo $lastNameErr;?></span>
+				<label>Last Name</label>
+				<span class = "error"> <?php echo $lastNameErr;?></span>			
 				<input type="text" class="login-field" value="" placeholder="last name" name="last_name">
 				</div>
 
@@ -377,35 +418,95 @@ box-shadow: none;
 		
 
 				<div class="control-group">
-				<span class = "error"> <?php echo $emailErr;?></span>
+				<label>Email Address</label>
+				<span class = "error"> <?php echo $emailErr;?></span>		
 				<input type="text" class="login-field" value="" placeholder="email address" name="email">
 				</div>
 
 				<div class="control-group">
+				<label>Password</label>
 				<span class = "error"> <?php echo $passErr;?></span>
 				<input type="password" class="login-field" value="" placeholder="password" name="pass">
 				</div>
 
 				<div class="control-group">
+				<label>Confirm Password</label>
 				<input type="password" class="login-field" value="" placeholder="confirm password" name="pass_confirm">
 				</div>
 				
 				<div class="control-group">
-				<span class = "error"> <?php echo $streetErr;?></span>
+				<label>Street Address</label>
+				<span class = "error"> <?php echo $streetErr;?></span>				
 				<input type="text" class="login-field" value="" placeholder="street address" name="street_address">
 				</div>
 				
 				<div class="control-group">
+				<label>City</label>
 				<span class = "error"> <?php echo $cityErr;?></span>
 				<input type="text" class="login-field" value="" placeholder="city" name="city">
 				</div>
 
 				<div class="control-group">
+				<label>State</label>
 				<span class = "error"> <?php echo $stateErr;?></span>
-				<input type="text" class="login-field" value="" placeholder="state" name="state">
+				<select  class="login-field" value=""  name="state">
+	<option value="AL">Alabama</option>
+	<option value="AK">Alaska</option>
+	<option value="AZ">Arizona</option>
+	<option value="AR">Arkansas</option>
+	<option value="CA">California</option>
+	<option value="CO">Colorado</option>
+	<option value="CT">Connecticut</option>
+	<option value="DE">Delaware</option>
+	<option value="DC">District Of Columbia</option>
+	<option value="FL">Florida</option>
+	<option value="GA">Georgia</option>
+	<option value="HI">Hawaii</option>
+	<option value="ID">Idaho</option>
+	<option value="IL">Illinois</option>
+	<option value="IN">Indiana</option>
+	<option value="IA">Iowa</option>
+	<option value="KS">Kansas</option>
+	<option value="KY">Kentucky</option>
+	<option value="LA">Louisiana</option>
+	<option value="ME">Maine</option>
+	<option value="MD">Maryland</option>
+	<option value="MA">Massachusetts</option>
+	<option value="MI">Michigan</option>
+	<option value="MN">Minnesota</option>
+	<option value="MS">Mississippi</option>
+	<option value="MO">Missouri</option>
+	<option value="MT">Montana</option>
+	<option value="NE">Nebraska</option>
+	<option value="NV">Nevada</option>
+	<option value="NH">New Hampshire</option>
+	<option value="NJ">New Jersey</option>
+	<option value="NM">New Mexico</option>
+	<option value="NY">New York</option>
+	<option value="NC">North Carolina</option>
+	<option value="ND">North Dakota</option>
+	<option value="OH">Ohio</option>
+	<option value="OK">Oklahoma</option>
+	<option value="OR">Oregon</option>
+	<option value="PA">Pennsylvania</option>
+	<option value="RI">Rhode Island</option>
+	<option value="SC">South Carolina</option>
+	<option value="SD">South Dakota</option>
+	<option value="TN">Tennessee</option>
+	<option value="TX">Texas</option>
+	<option value="UT">Utah</option>
+	<option value="VT">Vermont</option>
+	<option value="VA">Virginia</option>
+	<option value="WA">Washington</option>
+	<option value="WV">West Virginia</option>
+	<option value="WI">Wisconsin</option>
+	<option value="WY">Wyoming</option>
+</select>			
+		
 				</div>
 
 				<div class="control-group">
+				<label>Zip Code</label>
 				<span class = "error"> <?php echo $zipErr;?></span>
 				<input type="text" class="login-field" value="" placeholder="zip code" name="zip_code">
 				</div>
