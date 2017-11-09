@@ -177,15 +177,11 @@ mail( $_POST['Email'], $conf_subject, $msg, 'From: ' . $conf_sender );
 	unset($zipcode);
 	unset($email);
 	unset($pass);
-	
-	
-	
-	
-	
-	
-	
-	
-	
+   	
+   	header("Location: http://localhost:8080/ecomm-course-project/hooscooking/registration_successful.php");
+   	exit;
+
+
    } else {
 	$errTyp = "danger";
 	$errMSG = "Something went wrong, try again later..."; 

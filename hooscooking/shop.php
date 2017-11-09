@@ -7,7 +7,7 @@
   <!-- Basic Page Needs
   ================================================== -->
   <meta charset="utf-8">
-  <title>Ahop</title>
+  <title>Shop</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
