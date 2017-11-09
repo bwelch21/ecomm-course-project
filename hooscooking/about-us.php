@@ -18,9 +18,9 @@
   <!-- Primary Page Layout
     ================================================== -->
 
-    <?php include("header.html"); ?>
+    <?php include("header.php"); ?>
 
-    <div class="container">
+    <div class="container" >
 
 
 

@@ -376,11 +376,11 @@ box-shadow: none;
 
 
 
-<body>
+<body style="margin-top: 150px;">
 
-<?php include("header.html"); ?>
+<?php include("header.php"); ?>
 
-  <body>
+
 
   	<!-- The Modal -->
 <div id="myModal" class="modal">
@@ -523,7 +523,7 @@ box-shadow: none;
 
 <?php include("footer.html"); ?>
 
-</body>
+
   
   
 </body>

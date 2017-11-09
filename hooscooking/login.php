@@ -101,21 +101,24 @@ box-shadow: none;
 </head>
 
 
-<?php include("header.html"); ?>  
+<?php 
+session_start();
+include("header.php"); ?>  
 
 
 
 
 
-<body>
+<body style="margin-top: 150px;">
 
 
-  <body>
   
   <?php  
-   session_start();
+   if(isset($_SESSION['login_user'])){
+		header("location: memberhome.php");
+	}
    
-   $curr=$SESSION['login_user'];
+   
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // emmail and password sent from form 
@@ -135,7 +138,7 @@ box-shadow: none;
       if($count == 1) {
          #session_register("myemail");
          $_SESSION['login_user'] = $myemail;
-         header("Location: index.html");
+         header("Location: memberhome.php");
       }else {
          $error = "Your Login Name or Password is invalid";
 	
@@ -144,9 +147,7 @@ box-shadow: none;
 ?>
 
 
-            
-                <h1>Login</h1>
-         <h1> <?php echo $curr; ?></h1>
+        
   <div align = "center">
          <div style = "width:300px; border: solid 1px #333333; " align = "left">
             <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
@@ -171,7 +172,7 @@ box-shadow: none;
 <?php include("footer.html"); ?>  
 
 
-</body>
+
   
   
 </body>

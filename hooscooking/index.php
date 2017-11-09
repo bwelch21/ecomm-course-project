@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 <html>
 <head>
 <title>Home</title>
@@ -76,7 +80,15 @@ body, html {
 </head>
 <body>
 
+<<<<<<< HEAD
 <?php include("header.html"); ?>
+=======
+<?php
+session_start(); 
+ include("header.php"); 
+ 
+?>
+>>>>>>> origin/master
 
 <!-- First Parallax Image with Logo Text -->
 <div class="bgimg-1 w3-display-container" id="home">
@@ -98,7 +110,8 @@ body, html {
     </div>
 
     <!-- Hide this text on small devices -->
-    <div class="w3-col m6 w3-hide-small w3-padding-large">
+
+    <div class="w3-col m6 w3-padding-large">
       <p>Hoo’s Home Cooking shared marketplace allows you to be a cook, consumer, or even both! If you are preparing a meal and are anticipating multiple portions of leftovers you can easily avoid food waste by placing a notification on our marketplace. With our easy to use interface cooks can easily specify ingredients, flag major food allergens, specify price, indicate price and set a window for pickup time. All customers have to do is <strong>pay, pickup and enjoy </strong>their meal. </p>
       <p>We hope to foster a <strong>community</strong> platform where students and faculty and share portions of their home cooked meal for a profit. A valid virginia.edu email is required for sign up, we hope our home cooked community reflects the integrity of the UVA community. </p>
 
@@ -161,8 +174,8 @@ body, html {
   <div class="w3-row-padding w3-center w3-section">
     <div class="w3-col m3">
       <img src="images/meal5.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="The mist">
-    </div>
 
+    </div>
     <div class="w3-col m3">
       <img src="images/meal6.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="My beloved typewriter">
     </div>

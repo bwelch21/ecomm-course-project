@@ -9,6 +9,7 @@ function clean_data ($data) {
  	return $data;
 }
 
+
 // Define variables
 $dish_name = $price = $product_description = "";
 
@@ -75,9 +76,11 @@ if(isset($_POST["submit"])) {
 
 </head>
 
-<body>
+<body style="margin-top: 150px;">
 
-	<?php include("header.html"); ?>
+	<?php 
+	session_start(); 
+	include("header.php"); ?>
 
 	<h1 style="text-align: center;">Make a listing!</h1><br>
 
