@@ -160,54 +160,61 @@ customer information, ability to edit customer info, etc.-->
       <div class="w3-container w3-card w3-white w3-round w3-margin">
         <h3>Recent Purchases</h3>
         <hr>
-          <?php $query = "SELECT * FROM purchase WHERE buyer_id='". $member_id. "'";
-          $res = mysqli_query($conn, $query); ?>
-
-         <?php if(mysqli_num_rows($res) > 0) : ?>
-
-          <?php while($record = mysqli_fetch_assoc($res)) {
-            $item_id = $record["item_id"]; ?>
-      
-            <?php if($record[available]) : ?>
+        <?php $query = "SELECT * FROM purchase WHERE buyer_id='". $member_id. "'";
+        $res = mysqli_query($conn, $query); ?>
+          <?php if(mysqli_num_rows($res) > 0) : ?>
+            <?php while($record = mysqli_fetch_assoc($res)) {
+              $item_id = $record["item_id"]; ?>
+    
                 <?php $query = "SELECT * FROM food_item WHERE item_id='". $item_id. "'";
-                $res = mysqli_query($conn, $query); ?>
+                  $res = mysqli_query($conn, $query); ?>
 
-               <?php while($record = mysqli_fetch_assoc($res)) {
-                $item_id = $record["item_id"]; 
-                $dish_name = $record["dish_name"];
-                $product_description = $record["product_description"];
-                $price = $record["price"];
-                ?>
+                <?php while($record = mysqli_fetch_assoc($res)) {
+                  $item_id = $record["item_id"]; 
+                  $dish_name = $record["dish_name"];
+                  $product_description = $record["product_description"];
+                  $price = $record["price"];
+                  $seller = $record["seller_firstname"] . " " . $record["seller_lastname"];
 
-                <?php if($record[available]) : ?>
+                  ?>
 
-                  <div class="col-sm-4">
+        
+
+                    <div class="col-sm-4">
                     <div class="panel panel-primary">
-                      <div class="panel-heading"><h6><?php echo $dish_name; ?></h6><div align="right"><b><?php echo "$" . $price; ?></b></div></div>
-                      <div class="panel-body"><?php echo $product_description; ?><br></div>
+                    <div class="panel-heading"><h6><?php echo $dish_name; ?></h6><div align="right"><b><?php echo "$" . $price; ?></b></div></div>
+                    <div class="panel-body"><?php echo $product_description; ?><br>
+                      Sold by  <?php echo $seller; ?> </div>
                     <div class="panel-footer">
                     </div>
                 
-                  <?php endif ?>
                 <?php } ?>
-            <?php endif ?>
+           
             <?php } ?>
+          </div>
+        </div>
           <?php else: ?>
 
           <img src="images/empty_plate.jpg" style="width:40%" alt="Nature" class="w3-left w3-round w3-margin-right w3-margin-bottom">
           <h4>You currently have  nothing to eat :(</h4> 
           <p>Check out our food items for sale to beat your  appetite!</p><br>
-           <p><a  href="shop.php">Our food listings are here</a></p>
-        <?php endif ?>
+          <p><a  href="shop.php">Our food listings are here</a></p>
+          <?php endif ?>
 
       </div>  
 
     <!-- COMMENTS ===================================== -->
       <div class="w3-container w3-card w3-white w3-round w3-margin">
           <h3>Comments</h3>
+          <hr>
           <img class="w3-left w3-circle w3-margin-right" src="images/person3.png" style="width:60px" >
           <h4>John</h4> 
-          <p>Keep up the GREArk! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
+          <p>Keep up the GREAT WORK! I am cheering for you!! </p><br>
+          <hr>
+          <img class="w3-left w3-circle w3-margin-right" src="images/person4.png" style="width:60px" >
+          <h4>Lina</h4> 
+          <p> Honestly some o f the best pie I've ever had. Thank you so much! And it was evendropped off warm :) </p><br>
+
       
       </div> 
       
