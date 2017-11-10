@@ -37,45 +37,25 @@
                     <a href="index.php#about">About us</a>
                 </li>
 				
-				<?php if((isset($_SESSION['login_user'])))
-				{?>
-				<li id="menu-item-3">
-                    <a href="memberhome.php">Profile</a>
-                </li>	
-                <li id="menu-item-4">
-                    <a href="create_item.php">Sell</a>
-                </li>
-                <li id="menu-item-5">
-                    <a href="shop.php">Shop</a>
-                </li>
+				<?php if(isset($_SESSION['login_user'])) { ?>
+    				<li id="menu-item-3">
+                        <a href="memberhome.php"><?php echo $_SESSION['login_firstname']; ?>'s Profile</a>
+                    </li>	
+                    <li id="menu-item-4">
+                        <a href="create_item.php">Sell</a>
+                    </li>
+                    <li id="menu-item-5">
+                        <a href="shop.php">Shop</a>
+                    </li>
+                    <li id="menu-item-6">
+                        <a href="logout.php">Logout</a>
+                    </li>
 				
-				<?php
-				}?>
-		
-				
-				<?php
-				
-				if(!(isset($_SESSION['login_user'])))
-				{?>
-				<li id="menu-item-3" >
-                    <a href="login.php">Login</a> / <a href="signup.php">Sign Up</a>
-                </li>
-				
-				<?php
-				}
-			
-				
-				if((isset($_SESSION['login_user'])))
-				{?>
-				<li id="menu-item-6" >
-                    <a href="logout.php">Logout</a>
-                </li>
-				
-				<?php
-				}
-				?>
-					
-			
+				<?php } else { ?>
+                    <li id="menu-item-3" >
+                        <a href="login.php">Login</a> / <a href="signup.php">Sign Up</a>
+                    </li>
+                <?php } ?>
 
             </ul>
         </nav>

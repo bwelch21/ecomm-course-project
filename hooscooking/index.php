@@ -80,15 +80,12 @@ body, html {
 </head>
 <body>
 
-<<<<<<< HEAD
-<?php include("header.html"); ?>
-=======
+
 <?php
 session_start(); 
  include("header.php"); 
  
 ?>
->>>>>>> origin/master
 
 <!-- First Parallax Image with Logo Text -->
 <div class="bgimg-1 w3-display-container" id="home">

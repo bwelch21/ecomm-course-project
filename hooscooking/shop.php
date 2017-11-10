@@ -38,13 +38,14 @@
           $product_description = $record["product_description"];
           $price = $record["price"];
           $posted = $record["posted"];
+          $seller = $record["seller_firstname"] . " " . $record["seller_lastname"];
       ?>
       
       <?php if($record[available]) : ?>
       <div class="col-sm-4">
         <div class="panel panel-primary">
           <div class="panel-heading"><h4><?php echo $dish_name; ?></h4><div align="right"><b><?php echo "$" . $price; ?></b></div></div>
-          <div class="panel-body"><?php echo $product_description; ?><br><br><b>Posted at <?php echo $posted; ?></b></div>
+          <div class="panel-body"><?php echo $product_description; ?><br><br><b>Posted at <?php echo $posted; ?> by <?php echo $seller; ?></b></div>
           <div class="panel-footer">
             <form action="https://test.bitpay.com/checkout" method="post" >
             <input type="hidden" name="action" value="checkout" />

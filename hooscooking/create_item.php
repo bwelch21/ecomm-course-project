@@ -1,5 +1,12 @@
-<?php include("dbconnect.php"); ?>
 <?php
+
+session_start();
+if(!isset($_SESSION['login_user'])) {
+	header("Location: login.php");
+	exit;
+}
+
+include("dbconnect.php");
 
 function clean_data ($data) {
 	 // clean user inputs to prevent sql injections
@@ -12,6 +19,10 @@ function clean_data ($data) {
 
 // Define variables
 $dish_name = $price = $product_description = "";
+$seller_firstname = $_SESSION["login_firstname"];
+$seller_lastname = $_SESSION["login_lastname"];
+$seller_id = $_SESSION["login_id"];
+
 
 // Define error messages
 $error = False;
@@ -45,7 +56,7 @@ if(isset($_POST["submit"])) {
 	}
 
 	if(!$error) {
-		$query = "INSERT INTO food_item(available,dish_name,price,product_description,seller_id,type_id) VALUES('1','$dish_name','$price','$product_description','1','1')";
+		$query = "INSERT INTO food_item(available,dish_name,price,product_description,seller_firstname,seller_id,seller_lastname,type_id) VALUES('1','$dish_name','$price','$product_description','$seller_firstname','$seller_id','$seller_lastname','1')";
 		$res = mysqli_query($conn, $query);
 	}
 

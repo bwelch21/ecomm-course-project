@@ -115,22 +115,23 @@ include("header.php"); ?>
   
   <?php  
    if(isset($_SESSION['login_user'])){
-		header("location: memberhome.php");
+		header("Location: memberhome.php");
+    exit;
 	}
    
    
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
-      // emmail and password sent from form 
+      // email and password sent from form 
       
       $myemail= mysqli_real_escape_string($conn,$_POST['email']);
       $mypassword = mysqli_real_escape_string($conn,$_POST['password']); 
       $password = hash('sha256', $mypassword);
 	  
-      $sql = "SELECT id FROM user WHERE email = '$myemail' and password = '$password'";
+      $sql = "SELECT * FROM user WHERE email = '$myemail' and password = '$password'";
       $result = mysqli_query($conn,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
+      // $active = $row['active'];
 
       $count = mysqli_num_rows($result);
       
@@ -138,8 +139,12 @@ include("header.php"); ?>
       if($count == 1) {
          #session_register("myemail");
          $_SESSION['login_user'] = $myemail;
+         $_SESSION['login_firstname'] = $row['firstname'];
+         $_SESSION['login_lastname'] = $row['lastname'];
+         $_SESSION['login_id'] = $row['id'];
          header("Location: memberhome.php");
-      }else {
+         exit;
+      } else {
          $error = "Your Login Name or Password is invalid";
 	
       }
