@@ -39,13 +39,16 @@
           $price = $record["price"];
           $posted = $record["posted"];
           $seller = $record["seller_firstname"] . " " . $record["seller_lastname"];
+          $type = "images/" . $record["food_type"];
       ?>
       
       <?php if($record[available]) : ?>
       <div class="col-sm-4">
         <div class="panel panel-primary">
           <div class="panel-heading"><h4><?php echo $dish_name; ?></h4><div align="right"><b><?php echo "$" . $price; ?></b></div></div>
-          <div class="panel-body"><?php echo $product_description; ?><br><br><b>Posted at <?php echo $posted; ?> by <?php echo $seller; ?></b></div>
+          <div class="panel-body">
+            <img src="<?php echo $type ?>" alt="Image" style="width:100%" class="w3-margin-bottom"><br>
+            <?php echo $product_description; ?><br><br><b>Posted at <?php echo $posted; ?> by <?php echo $seller; ?></b></div>
           <div class="panel-footer">
             <form action="https://test.bitpay.com/checkout" method="post" >
             <input type="hidden" name="action" value="checkout" />

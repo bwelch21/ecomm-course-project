@@ -137,14 +137,14 @@ function clean_data ($data) {
 	$errTyp = "success";
 	$errMSG = "Successfully registered, you may login now";
 
+
+//	ini_set('SMTP', "server.com");
+//	ini_set('smtp_port', "25");
+//	ini_set('sendmail_from', "pineapplepunch1@gmail.com");
 	
-	ini_set('SMTP', "server.com");
-ini_set('smtp_port', "25");
-ini_set('sendmail_from', "pineapplepunch1@gmail.com");
 	
 	
-	
-	$subject = 'Website Enquiry';
+/*	$subject = 'Website Enquiry';
 
 // Your email address. This is where the form information will be sent.
 $emailadd = $email;
@@ -187,7 +187,7 @@ mail( $_POST['Email'], $conf_subject, $msg, 'From: ' . $conf_sender );
 	$errMSG = "Something went wrong, try again later..."; 
    } 
 	}
-  }
+  }*/
  
 	
 ?>
@@ -195,7 +195,7 @@ mail( $_POST['Email'], $conf_subject, $msg, 'From: ' . $conf_sender );
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Login Form</title>
+  <title>Sign up</title>
   
   
   

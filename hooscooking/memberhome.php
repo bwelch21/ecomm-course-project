@@ -213,7 +213,7 @@ customer information, ability to edit customer info, etc.-->
           <hr>
           <img class="w3-left w3-circle w3-margin-right" src="images/person4.png" style="width:60px" >
           <h4>Lina</h4> 
-          <p> Honestly some o f the best pie I've ever had. Thank you so much! And it was evendropped off warm :) </p><br>
+          <p> Honestly some of the best pie I've ever had. Thank you so much! And it was evendropped off warm :) </p><br>
 
       
       </div> 
