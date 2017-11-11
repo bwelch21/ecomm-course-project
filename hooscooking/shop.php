@@ -35,14 +35,21 @@
 
       <?php while($record = mysqli_fetch_assoc($res)) {
           $dish_name = $record["dish_name"];
+          $item_id = $record["item_id"];
           $product_description = $record["product_description"];
           $price = $record["price"];
           $posted = $record["posted"];
           $seller = $record["seller_firstname"] . " " . $record["seller_lastname"];
+
           $type = "images/" . $record["food_type"];
+
+          $seller_firstname = $record["seller_firstname"];
+          $seller_lastname = $record["seller_lastname"];
+          $seller_id = $record["seller_id"];
+
       ?>
       
-      <?php if($record[available]) : ?>
+      <?php if($record[available] and $record[seller_id] != $_SESSION["login_id"]) : ?>
       <div class="col-sm-4">
         <div class="panel panel-primary">
           <div class="panel-heading"><h4><?php echo $dish_name; ?></h4><div align="right"><b><?php echo "$" . $price; ?></b></div></div>
@@ -50,27 +57,29 @@
             <img src="<?php echo $type ?>" alt="Image" style="width:100%" class="w3-margin-bottom"><br>
             <?php echo $product_description; ?><br><br><b>Posted at <?php echo $posted; ?> by <?php echo $seller; ?></b></div>
           <div class="panel-footer">
-            <form action="https://test.bitpay.com/checkout" method="post" >
-            <input type="hidden" name="action" value="checkout" />
-            <input type="hidden" name="posData" value="" />
-            <input type="hidden" name="price" value="<?php echo $price; ?>" />
-            <input type="hidden" name="notify" value="true">
-            <input type="hidden" name="redirectURL" value="http://localhost:8080/ecomm-course-project/hooscooking/transaction_successful.php" />
-            <input type="hidden" name="data" value="QPbavyRKP7VXn5XCsEIphEI6dvCRgRkXNBhOkH9PiEN4ICTsetECbq8w2gFhW5LjfD9HeEN8x/2LDPIYdm1waQ93VjUSKOziJeTqrTVEv7s=" />
-            <input type="image" src="https://test.bitpay.com/img/button-large.png" border="0" name="submit" alt="BitPay, the easy way to pay with bitcoins." >
-        <?php endif ?>
+            <form action="process_payment.php" method="post" >
+              <input type="hidden" name="dish_name" value="<?php echo $dish_name; ?>">
+              <input type="hidden" name ="item_id" value="<?php echo $item_id; ?>">
+              <input type="hidden" name="price" value="<?php echo $price; ?>">
+              <input type="hidden" name="product_description" value="<?php echo $product_description; ?>">
+              <input type="hidden" name="seller_firstname" value="<?php echo $seller_firstname; ?>">
+              <input type="hidden" name="seller_lastname" value="<?php echo $seller_lastname; ?>">
+              <input type="hidden" name="seller_id" value="<?php echo $seller_id; ?>">
 
-</form>
+              <input type="submit" name="submit" value="Buy">
+            </form>
           </div>
-        </div>
+          </div>
       </div>
+      <?php endif ?>
+        
       <?php } ?>
     <?php else : ?>
       Nothing to show...
     <?php endif ?>
 </div>
 
-<br>
+<br><br>
 
 <footer>
 

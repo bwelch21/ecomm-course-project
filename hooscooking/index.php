@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
 <html>
 <head>
 <title>Home</title>
